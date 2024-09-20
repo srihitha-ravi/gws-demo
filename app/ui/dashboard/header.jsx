@@ -1,11 +1,11 @@
 import { Bars3Icon, UserCircleIcon } from '@heroicons/react/24/outline';
 
-export default function Header({ onToggle }) {
+export default function Header({ toggleNav }) {
   return (
     <header className="w-full flex items-center justify-between p-4 bg-black">
       {/* Menu Icon */}
       <div className="flex items-center">
-        <button onClick={onToggle}>
+        <button onClick={toggleNav}>
           <Bars3Icon className="h-6 w-6 text-white" />
         </button>
       </div>

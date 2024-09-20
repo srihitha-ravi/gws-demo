@@ -7,22 +7,28 @@ import SideNav from '../ui/dashboard/sidenav';
 export const experimental_ppr = true;
 
 export default function Layout({ children }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar state
+  const [isCollapsed, setIsCollapsed] = useState(true); // Sidebar state
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev); // Toggle function
+  const toggleNav = () => {
+    setIsCollapsed(!isCollapsed);
   };
 
   return (
     <div className="flex flex-col h-screen bg-black">
       {/* Header */}
-      <Header onToggle={toggleSidebar} />
+      <Header toggleNav={toggleNav} />
 
       {/* Main Content Area */}
       <div className="flex flex-grow">
         {/* Side Navigation */}
-        <div className={`w-64 bg-black ${isSidebarOpen ? 'block' : 'hidden'} md:flex`}>
-          <SideNav />
+        <div
+          className={`${
+            isCollapsed
+              ? 'w-16 md:w-20' // Narrow width when collapsed
+              : 'w-64 md:w-72' // Expanded width
+          } transition-all duration-300 bg-black hidden md:flex`}
+        >
+          <SideNav isCollapsed={isCollapsed}/>
         </div>
 
         {/* Content Area */}
